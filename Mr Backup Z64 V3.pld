@@ -1,0 +1,40 @@
+Name     PALCE16V8_MR_BACKUP_Z64_V3;
+PartNo   001;
+Date     07/15/2026;
+Revision 01;
+Designer Richard Weick;
+Device   G16V8;
+
+PIN 1  = GPCS0;
+PIN 2  = SD0;
+PIN 3  = SD1;
+PIN 4  = SD2;
+PIN 5  = SA16;
+PIN 6  = UNUSED_IN6;
+PIN 7  = UNUSED_IN7;
+PIN 8  = UNUSED_IN8;
+PIN 9  = RESET_N;
+PIN 11 = GND;
+
+PIN 12 = BIOS_A18;
+PIN 13 = BIOS_A17;
+PIN 14 = BIOS_A16;
+PIN 15 = UNUSED_OUT15;
+PIN 16 = BANK_A18;
+PIN 17 = BANK_A17;
+PIN 18 = BANK_A16;
+PIN 19 = C9013_ACTIVATOR;
+
+/* Rising-edge registered bank storage */
+BANK_A18.D = SD2;
+BANK_A17.D = SD1;
+BANK_A16.D = SD0;
+
+/* Immediate combinational BIOS address generation */
+BIOS_A18 = SA16 # BANK_A18;
+BIOS_A17 = SA16 # BANK_A17;
+BIOS_A16 = SA16 # BANK_A16;
+
+/* Other outputs */
+UNUSED_OUT15 = 'b'1;
+C9013_ACTIVATOR = !RESET_N;
